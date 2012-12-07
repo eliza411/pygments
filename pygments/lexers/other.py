@@ -1761,6 +1761,8 @@ class GherkinLexer(RegexLexer):
               bygroups(Keyword, Text, Generic.Subheading), 'scenario'),
             (r'(Scenario:)([ \t]*)([^\n]*)$',
               bygroups(Keyword, Text, Generic.Subheading), 'scenario'),
+            (r'(Scenario Outline:)([ \t]*)([^\n]*)$',
+              bygroups(Keyword, Text, Generic.Subheading), 'scenario'),
             include('root'),
             (r'[^\s]+', Text),
             (r'\s+', Text),
