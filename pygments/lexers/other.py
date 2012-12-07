@@ -1763,7 +1763,22 @@ class GherkinLexer(RegexLexer):
             (r'\s+', Text),
         ],
         'scenario': [
+            (r'(Given)', Keyword.Given, 'given'),
+            (r'(When)', Keyword.When, 'when'),
+            (r'(Then)', Keyword.Then, 'then'),
             include('feature')
+        ],
+        'given': [
+            (r'(And|But)', Keyword.Given),
+            include('scenario'),
+        ],
+        'when': [
+            (r'(And|But)', Keyword.When),
+            include('scenario'),
+        ],
+        'then': [
+            (r'(And|But)', Keyword.Then),
+            include('scenario'),
         ],
     }
 
