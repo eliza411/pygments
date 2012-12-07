@@ -1766,7 +1766,8 @@ class GherkinLexer(RegexLexer):
             (r'(Given)', Keyword.Given, 'given'),
             (r'(When)', Keyword.When, 'when'),
             (r'(Then)', Keyword.Then, 'then'),
-            include('feature')
+            (r'\d+\.?\d*', Number),
+            include('feature'),
         ],
         'given': [
             (r'(And|But)', Keyword.Given),
