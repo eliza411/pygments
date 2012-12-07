@@ -1752,12 +1752,19 @@ class GherkinLexer(RegexLexer):
     tokens = {
         'root': [
             (r'#.*$', Comment),
-            (r'(\s*Feature:)(\s.*)$',
-              bygroups(Keyword, Generic.Heading)),
-            (r'(\s*Scenario:)(\s.*)$',
-              bygroups(Keyword, Generic.SubHeading)),
-            (r'.+', Error),
-        ]
+            (r'(Feature:)(\s*)(.*)$',
+              bygroups(Keyword, Text, Generic.Heading), 'feature'),
+        ],
+        'feature': [
+            (r'(Scenario:)(\s*)(.*)$',
+              bygroups(Keyword, Text, Generic.Subheading), 'scenario'),
+            include('root'),
+            (r'[^\s]+', Text),
+            (r'\s+', Text),
+        ],
+        'scenario': [
+            include('feature')
+        ],
     }
 
 class AsymptoteLexer(RegexLexer):
