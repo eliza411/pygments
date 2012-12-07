@@ -1771,6 +1771,7 @@ class GherkinLexer(RegexLexer):
             (r'(Given)', Keyword.Given, 'given'),
             (r'(When)', Keyword.When, 'when'),
             (r'(Then)', Keyword.Then, 'then'),
+            (r'(Examples:)', Keyword, 'step'),
             include('feature'),
         ],
         'step': [
