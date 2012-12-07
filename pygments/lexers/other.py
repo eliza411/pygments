@@ -1752,7 +1752,10 @@ class GherkinLexer(RegexLexer):
     tokens = {
         'root': [
             (r'#.*$', Comment),
-            (r'\s*[^\s]+:\s', Keyword),
+            (r'(\s*Feature:)(\s.*)$',
+              bygroups(Keyword, Generic.Heading)),
+            (r'(\s*Scenario:)(\s.*)$',
+              bygroups(Keyword, Generic.SubHeading)),
             (r'.+', Error),
         ]
     }
