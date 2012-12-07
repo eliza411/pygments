@@ -1768,20 +1768,29 @@ class GherkinLexer(RegexLexer):
             (r'(Given)', Keyword.Given, 'given'),
             (r'(When)', Keyword.When, 'when'),
             (r'(Then)', Keyword.Then, 'then'),
-            (r'\d+\.?\d*', Number),
             include('feature'),
+        ],
+        'step': [
+            (r'\d+\.?\d*', Number),
+            (r'"""', String, 'pystring'),
+            include('scenario'),
         ],
         'given': [
             (r'(And|But)', Keyword.Given),
-            include('scenario'),
+            include('step'),
         ],
         'when': [
             (r'(And|But)', Keyword.When),
-            include('scenario'),
+            include('step'),
         ],
         'then': [
             (r'(And|But)', Keyword.Then),
-            include('scenario'),
+            include('step'),
+        ],
+        'pystring': [
+            (r'"""', String, '#pop'),
+            (r'[^\s]+', String),
+            (r'\s+', String),
         ],
     }
 
