@@ -1778,6 +1778,7 @@ class GherkinLexer(RegexLexer):
             (r'\d+\.?\d*', Number),
             (r'<[^>]+>', Name.Variable),
             (r'"""', String, 'pystring'),
+            (r'\|', Punctuation, ('table', 'table_head')),
             include('scenario'),
         ],
         'given': [
@@ -1796,6 +1797,17 @@ class GherkinLexer(RegexLexer):
             (r'"""', String, '#pop'),
             (r'[^\s]+', String),
             (r'\s+', String),
+        ],
+        'table': [
+            (r'\|$', Punctuation),
+            (r'[^\s]+', Literal),
+            (r'\s+', Text),
+        ],
+        'table_head': [
+            (r'\|$', Punctuation, '#pop'),
+            (r'\|', Punctuation),
+            (r'[^\s]+', Name.Variable),
+            (r'\s+', Text),
         ],
     }
 
