@@ -1800,14 +1800,14 @@ class GherkinLexer(RegexLexer):
         ],
         'table': [
             (r'\n\n', Text, '#pop'),
-            (r'\|$', Punctuation),
-            (r'[^\s]+', Literal),
+            (r'\|', Punctuation),
+            (r'[^\s\|]+', Literal),
             (r'\s+', Text),
         ],
         'table_head': [
             (r'\|$', Punctuation, '#pop'),
             (r'\|', Punctuation),
-            (r'[^\s]+', Name.Variable),
+            (r'[^\s\|]+', Name.Variable),
             (r'\s+', Text),
         ],
     }
