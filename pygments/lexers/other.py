@@ -1775,6 +1775,7 @@ class GherkinLexer(RegexLexer):
         ],
         'step': [
             (r'\d+\.?\d*', Number),
+            (r'<[^>]+>', Name.Variable),
             (r'"""', String, 'pystring'),
             include('scenario'),
         ],
