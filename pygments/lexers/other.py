@@ -1799,6 +1799,7 @@ class GherkinLexer(RegexLexer):
             (r'\s+', String),
         ],
         'table': [
+            (r'\n\n', Text, '#pop'),
             (r'\|$', Punctuation),
             (r'[^\s]+', Literal),
             (r'\s+', Text),
